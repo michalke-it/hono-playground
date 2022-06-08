@@ -1,5 +1,7 @@
 # Hono playground
 
+Small playground for experimenting with https://www.eclipse.org/hono/ installed on a k3s cluster via helm. Needs Vagrant and KVM/Libvirt as prerequisites.
+
 - start the vms via 'vagrant up'
 - ssh into the head via 'vagrant ssh'
 - install hono via '/vagrant/install\_hono.sh'

@@ -43,6 +43,10 @@ Vagrant.configure("2") do |config|
       v3.memory = "#{$VMMEM}"
       v3.cpus = "#{$VMCPU}"
     end
+    config.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--memory", "#{$VMMEM}"]
+      v.customize ["modifyvm", :id, "--cpus", "#{$VMCPU}"]
+    end
 
     headnode.vm.provision :shell, 
       inline: "echo 'set bell-style none' >> /etc/inputrc \

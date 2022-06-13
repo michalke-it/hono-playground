@@ -31,6 +31,12 @@ echo $MY_DEVICE > $DEVICEID
 echo $MY_TENANT > $TENANTID
 echo "(You can also find them at $DEVICEID and $TENANTID)"
 #echo "Now running the test script with tenant id [$MY_TENANT]"
-
+echo "Waiting a moment to make sure everything is ready..."
 export AMQP_NETWORK_IP=$(sudo -E kubectl get service eclipse-hono-dispatch-router-ext --output="jsonpath={.status.loadBalancer.ingress[0]['hostname','ip']}" -n hono)
+until ping -c 1 $AMQP_NETWORK_IP &> /dev/null
+do
+    sleep 1
+done
+sleep 120
+echo "Running the hono client against $AMQP_NETWORK_IP"
 java -jar /vagrant/hono-cli-*-exec.jar --hono.client.host=$AMQP_NETWORK_IP --hono.client.port=15672 --hono.client.username=consumer@HONO --hono.client.password=verysecret --spring.profiles.active=receiver --tenant.id=$MY_TENANT

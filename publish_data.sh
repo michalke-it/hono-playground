@@ -1,10 +1,6 @@
-MY_TENANT=$(cat /home/vagrant/tenant.id)
-MY_DEVICE=$(cat /home/vagrant/device.id)
-MY_PWD=$(cat /home/vagrant/password)
+source /vagrant/hono.env
 TOPIC=telemetry
 DATA='{"temp": 5}'
-HTTP_ADAPTER_IP=$(sudo -E kubectl get service eclipse-hono-adapter-http-vertx --output="jsonpath={.status.loadBalancer.ingress[0]['hostname','ip']}" -n hono)
-MQTT_ADAPTER_IP=$(sudo -E kubectl get service eclipse-hono-adapter-mqtt-vertx --output="jsonpath={.status.loadBalancer.ingress[0]['hostname','ip']}" -n hono)
 
 #publish via HTTP:
 echo "Publishing data via HTTP..."

@@ -11,7 +11,7 @@ export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 echo "export KUBECONFIG=/etc/rancher/k3s/k3s.yaml" >> /home/vagrant/.bashrc
 curl -sSLf https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 \
         | bash
-apt install -y openjdk-11-jre-headless mosquitto-clients
+apt install -y openjdk-17-jre-headless mosquitto-clients
 HEADNODE
 
 $install = <<-SCRIPT
